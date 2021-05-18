@@ -1,0 +1,63 @@
+h1 {
+    font-family: "Brush Script Std", cursive;
+    text-align: center;
+}
+
+h2 {
+    font-family: "Brush Script Std", cursive;
+}
+#copyright{
+    background-color: rgba(0, 0, 0, 0.2)
+}
+
+#game-menu {
+    height: 640px;
+    margin-left: 5%;
+    display: flex;
+    flex-wrap: wrap;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5px;
+}
+
+#memory-game {
+    width: 640px;
+    height: 640px;
+    margin-right: 5%;
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.memory-card {
+    /*board is 640 we have 160 for each but we need somespace with each other so -10 and have margin 5px*/
+    width: calc(25% - 10px);
+    height: calc(33.333% - 10px);
+    margin: 5px;
+    position: relative;   
+    transform: scale(1);
+    /*preserve-3d: Specifies that child elements(.front-face and .back-face) will preserve its 3D position*/
+    transform-style: preserve-3d;
+    transition: transform .5s;
+}
+
+.memory-card.flip {
+    transform: rotateY(180deg);
+}
+
+/*put front and back same spot*/
+.front-face, .back-face {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border-style: solid;
+    border-color: wheat;
+    border-width: 2px;
+    border-radius: 5px;
+    backface-visibility: hidden;
+}
+
+/*then rotate front 180deg to only see the back-face at first*/
+.front-face {
+    transform: rotateY(180deg);
+}
