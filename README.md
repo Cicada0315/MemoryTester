@@ -11,14 +11,21 @@ cd MemoryTester
 ### Install gem
 ```
 bundle install
-rails db:migrate
 ```
 ### Run
 ```
-rails s
+memoryTester/backend$ rails s
+memoryTester/frontend$ explorer.exe index.html
 ``` 
 
 ## Navigate website
+### Create New Category
+User can make new category with 6 cards.
+
+### Play game
+There is a list of category that user can select when user click Play button next each category,
+the new game will appear.
+
 
 ## MIT License
 https://github.com/Cicada0315/MemoryTester/blob/main/LICENSE
