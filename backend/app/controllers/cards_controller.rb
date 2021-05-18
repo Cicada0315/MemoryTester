@@ -4,6 +4,11 @@ class CardsController < ApplicationController
 
   # GET /cards
   def index
+    
+    if params[:category_id]
+      @category=Category.find_by(id: params[:category_id])
+      @cards=@category.cards
+    end
     @cards = Card.all
 
     render json: @cards

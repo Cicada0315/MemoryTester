@@ -1,3 +1,4 @@
+
 const back_face_img="https://image.shutterstock.com/image-vector/turned-playing-card-on-green-600w-69737500.jpg"
 document.addEventListener("DOMContentLoaded", () => {
     createCategory()
@@ -12,7 +13,7 @@ function createCategory(){
         const nameInput = form.querySelector("#name")
         const newcards_name = document.querySelectorAll('.newcard-name')
         const newcards_url = document.querySelectorAll('.newcard-url')
-    
+        
         fetch("http://127.0.0.1:3000/categories", {
             method: "POST",
             headers: {
@@ -20,32 +21,36 @@ function createCategory(){
                 "Accept": "application/json"
             },
             body: JSON.stringify({
-                name: nameInput.value
+                name: nameInput.value,
+                cards_attributes: [{
+                        name: newcards_name[0].value,
+                        url: newcards_url[0].value
+                    }, {
+                        name: newcards_name[1].value,
+                        url: newcards_url[1].value
+                    }, {
+                        name: newcards_name[2].value,
+                        url: newcards_url[2].value
+                    }, {
+                        name: newcards_name[3].value,
+                        url: newcards_url[3].value
+                    }, {
+                        name: newcards_name[4].value,
+                        url: newcards_url[4].value
+                    }, {
+                        name: newcards_name[5].value,
+                        url: newcards_url[5].value
+                    }
+                ]
             })
         })
         .then(resp => resp.json())
         .then(data => {
-            addCardtoCategory(data, 0)
+            console.log(data)
+            addCard(data)
         })
         .catch(err => console.error(err))
 
-        function addCardtoCategory(data, i){
-            return fetch("http://127.0.0.1:3000/cards", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json"
-                },
-                body: JSON.stringify({
-                    name: newcards_name[i].value,
-                    url: newcards_url[i].value,
-                    category_id: data.id
-                })
-                
-            })
-            .then(resp => resp.json())
-            .catch(err => console.error(err))
-        }
     })
 }
 
@@ -128,24 +133,23 @@ function shuffle(){
 function playgame(data){
     const cards = document.querySelectorAll('.memory-card')
     cards.forEach(card => card.addEventListener('click', flipCard))
-    const timerinput= document.getElementById("timer")
-    timerinput.addEventListener('change', updatetimervalue)
+    const speedinput= document.getElementById("speed")
+    speedinput.addEventListener('change', updatespeed)
     const reset_game= document.getElementById("reset_game")
     reset_game.addEventListener('click', resetGame);
     const back= document.getElementById("back")
     back.addEventListener('click', goback);
     let trialout=document.getElementById("counter")
     let trial=parseInt(document.getElementById("counter").innerText)
-    let timer=parseInt(timerinput.value)
+    let speed=parseInt(speedinput.value)
     let totalcount=6
-    let complete=false
     let hasFlippedCard = false
     let lockBoard = false
     let firstCard, secondCard
 
     //Menu Related
-    function updatetimervalue(e) {
-        timer=this.value
+    function updatespeed(e) {
+        speed=this.value
     }
 
     function resetGame() {
@@ -180,7 +184,6 @@ function playgame(data){
             disableCards()
             totalcount--;
             if(totalcount===0){
-                complete=true;
                 //wait until the card fliped.
                 setTimeout(() => {
                     winnerMessage()
@@ -209,7 +212,7 @@ function playgame(data){
             firstCard.classList.remove('flip');
             secondCard.classList.remove('flip');
             resetValues();
-        }, timer)
+        }, speed)
     }
 
     function resetValues() {
@@ -219,3 +222,54 @@ function playgame(data){
         secondCard = null
     }
 }
+
+/*nested fetch request can be replaced with accepts_nested_attributes_for but accecpt_nested is much clearner
+function createCategory(){
+    const createForm = document.getElementById("form-container")
+    createForm.addEventListener("submit", function(e){
+        e.preventDefault()
+        const form = e.target
+        const nameInput = form.querySelector("#name")
+        
+        
+        fetch("http://127.0.0.1:3000/categories", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({
+                name: nameInput.value
+            })
+        })
+        .then(resp => resp.json())
+        .then(data => {
+            console.log(data)
+            addCard(data)
+        })
+        .catch(err => console.error(err))
+
+    })
+}
+function addCard(data){
+    console.log("sec: ", data.store.id)
+    const newcards_name = document.querySelectorAll('.newcard-name')
+    const newcards_url = document.querySelectorAll('.newcard-url')
+    fetch("http://127.0.0.1:3000/cards", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({
+                name: newcards_name[0].value,
+                url: newcards_url[0].value,
+                category_id: data.store.id
+            })
+        })
+        .then(resp => resp.json())
+        .then(data => {
+            console.log(data)
+        })
+        .catch(err => console.error(err))
+}*/
