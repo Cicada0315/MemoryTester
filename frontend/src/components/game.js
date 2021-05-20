@@ -21,8 +21,8 @@ class Game{
                 <img class="back-face" src="${back_face_img}" alt="${this.cards[i].name}" />
             </div>`
         }
-        //shuffle()
-        //playgame()
+        this.shuffle()
+        this.playgame()
     }
 
     shuffle(){
@@ -59,7 +59,7 @@ class Game{
             resetValues()
             totalcount=6
             trialout.innerText=0
-            setgameboard(data)
+            this.setgameboard()
         }
 
         function goback(){
