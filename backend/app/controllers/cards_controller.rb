@@ -1,17 +1,16 @@
 class CardsController < ApplicationController
   before_action :set_card, only: [:show, :update, :destroy]
   
-
   # GET /cards
   def index
-    
     if params[:category_id]
       @category=Category.find_by(id: params[:category_id])
       @cards=@category.cards
+      render json: category_cards_path(@category)
+    else
+      @cards = Card.all
     end
-    @cards = Card.all
-
-    render json: @cards
+      render json: @cards
   end
 
   # GET /cards/1

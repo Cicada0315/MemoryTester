@@ -1,4 +1,4 @@
-![](frontend/images/card_game.png)
+![](frontend/images/ReadmeImage.png)
 # MemoryTester
 Fun game to challenge your brain!
 
