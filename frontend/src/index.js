@@ -8,18 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     categoryForms.listenPlay();
 })
 
-/*function rearrangeforamt(data){
-    const categoryContainer = document.getElementById("category-container")
-    categoryContainer.innerHTML = `<h1>Ready to play with ${data.name}?</h1><div id="cate-${data.id}"></div>`
-    const makeCate= `cate-${data.id}`
-    const getcategory=document.getElementById(makeCate)
-    
-    for(let i=0; i<data.cards.length; i++){
-        getcategory.innerHTML += `<img alt="card-image" src="${data.cards[i].url}" class="img-thumbnail col" width= "210" height="210">`
-    }
-}*/
-
-function setgameboard(data){
+/*function setgameboard(data){
     const game=document.getElementById("game")
     game.hidden=false
     const boardContainer = document.getElementById("memory-game")
@@ -138,5 +127,5 @@ function playgame(data){
         firstCard=null 
         secondCard = null
     }
-}
+}*/
 

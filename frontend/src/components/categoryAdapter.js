@@ -13,20 +13,20 @@ class CategoryAdapter{
                 category.addToDom();
             });
         })
-        .catch(err => console.log(err))
+        .catch(err => console.log(err));
     }
 
     getCategory(id){
         fetch(`http://127.0.0.1:3000/categories/${id}`)
         .then(resp => resp.json())
         .then(data => {
-            console.log(data)
             const category=new Category(data);
-            category.rearrangeforamt()
-            //rearrangeforamt(data)
+            category.rearrangeforamt();
+            const game=new Game(data);
+            game.setgameboard();
             //setgameboard(data)
         })
-        .catch(err => console.error(err))
+        .catch(err => console.error(err));
     }
 
     postCategory(nameInput, newcards_name, newcards_url){
