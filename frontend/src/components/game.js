@@ -27,68 +27,69 @@ class Game{
     }
 
     playgame(){
-        const cards = document.querySelectorAll('.memory-card')
-        cards.forEach(card => card.addEventListener('click', flipCard))
-        const speedinput= document.getElementById("speed")
-        speedinput.addEventListener('change', updatespeed)
-        const reset_game= document.getElementById("reset_game")
+        const cards = document.querySelectorAll('.memory-card');
+        cards.forEach(card => card.addEventListener('click', flipCard));
+        const speedinput= document.getElementById("speed");
+        speedinput.addEventListener('change', updatespeed);
+        const reset_game= document.getElementById("reset_game");
         reset_game.addEventListener('click', resetGame);
-        const back= document.getElementById("back")
+        const back= document.getElementById("back");
         back.addEventListener('click', goback);
-        let trialout=document.getElementById("counter")
-        let trial=parseInt(document.getElementById("counter").innerText)
-        let speed=parseInt(speedinput.value)
-        let totalcount=6
-        let hasFlippedCard = false
-        let lockBoard = false
-        let firstCard, secondCard
-        gameForms.listenflip(hasFlippedCard,lockBoard, firstCard, secondCard);
+        let trialout=document.getElementById("counter");
+        let trial=parseInt(document.getElementById("counter").innerText);
+        let speed=parseInt(speedinput.value);
+        let totalcount=6;
+        let hasFlippedCard = false;
+        let lockBoard = false;
+        let firstCard, secondCard;
+        let startgame=false;
 
         //Menu Related
         function updatespeed(e) {
-            speed=this.value
+            speed=this.value;
         }
 
         function resetGame() {
-            resetValues()
-            totalcount=6
-            trialout.innerText=0
-            this.setgameboard()
+            resetValues();
+            startgame=false;
+            totalcount=6;
+            trialout.innerText=0;
+            this.setgameboard();
         }
 
         function goback(){
-            document.location.reload(true)
+            document.location.reload(true);
         }
 
         //Game related
         function flipCard() {
-            if (lockBoard) return
-            if (this === firstCard) return
+            if (lockBoard) return;
+            if (this === firstCard) return;
 
             this.classList.add('flip')
-            trialout.innerText=trial+=1
+            trialout.innerText=trial+=1;
             if (!hasFlippedCard) {
-                hasFlippedCard = true
-                firstCard = this
-                return
+                hasFlippedCard = true;
+                firstCard = this;
+                return;
             }
-            secondCard = this
-            checkForMatch()
+            secondCard = this;
+            checkForMatch();
         }
 
         function checkForMatch() {
             if (firstCard.dataset.set === secondCard.dataset.set){
-                disableCards()
+                disableCards();
                 totalcount--;
                 if(totalcount===0){
                     //wait until the card fliped.
                     setTimeout(() => {
                         winnerMessage()
                     }, 500)
-                }
+                };
             }
             else{
-                unflipCards()
+                unflipCards();
             }
         }
 
@@ -113,10 +114,10 @@ class Game{
         }
 
         function resetValues() {
-            hasFlippedCard= false 
-            lockBoard = false
-            firstCard=null 
-            secondCard = null
+            hasFlippedCard= false;
+            lockBoard = false;
+            firstCard=null;
+            secondCard = null;
         }
     }
 }

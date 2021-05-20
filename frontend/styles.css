@@ -38,7 +38,7 @@ h2 {
     transform: scale(1);
     /*preserve-3d: Specifies that child elements(.front-face and .back-face) will preserve its 3D position*/
     transform-style: preserve-3d;
-    transition: transform .5s;
+    transition: transform .3s;
 }
 
 .memory-card.flip {
