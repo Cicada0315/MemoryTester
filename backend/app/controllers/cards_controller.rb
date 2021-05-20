@@ -6,9 +6,9 @@ class CardsController < ApplicationController
     if params[:category_id]
       @category=Category.find_by(id: params[:category_id])
       @cards=@category.cards
-      render json: category_cards_path(@category)
     else
       @cards = Card.all
+      
     end
       render json: @cards
   end

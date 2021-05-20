@@ -1,8 +1,11 @@
-
 const back_face_img="https://image.shutterstock.com/image-vector/turned-playing-card-on-green-600w-69737500.jpg"
+const categoryfetch=new CategoryAdapter("http://127.0.0.1:3000/categories");
+
 document.addEventListener("DOMContentLoaded", () => {
-    createCategory()
-    fetchCategory()
+    createCategory();
+    //fetchCategory()
+    categoryfetch.getCategory();
+
 })
 
 function createCategory(){
@@ -54,16 +57,16 @@ function createCategory(){
     })
 }
 
-function fetchCategory(){
+/*function fetchCategory(){
     fetch("http://127.0.0.1:3000/categories")
     .then(resp => resp.json())
     .then(data => {
         data.forEach(addCategory)
     })
     .catch(err => console.log(err))
-}
+}*/
 
-function addCategory(category){
+/*function addCategory(category){
     const categoryContainer = document.getElementById("category-container")
     categoryContainer.addEventListener("click", createGame)
     categoryContainer.innerHTML += 
@@ -71,7 +74,7 @@ function addCategory(category){
         <button class="btn btn-outline-primary" data-action="create_game">Play</button>
     </li>
     <br><br>`
-}
+}*/
 
 function createGame(e) {
     const btn = e.target
