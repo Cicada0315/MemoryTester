@@ -4,28 +4,11 @@ const categoryForms=new CategoryFrom;
 
 document.addEventListener("DOMContentLoaded", () => {
     categoryForms.createCategory();
-    categoryfetch.getCategory();
+    categoryfetch.getCategories();
+    categoryForms.listenPlay();
 })
 
-function createGame(e) {
-    const btn = e.target
-    const createForm = document.getElementById("form-container")
-    if (btn.dataset.action === "create_game"){
-        createForm.hidden="true"
-        const temparr=btn.parentElement.id.split("-")
-        const id = temparr[1]
-        
-        fetch(`http://127.0.0.1:3000/categories/${id}`)
-        .then(resp => resp.json())
-        .then(data => {
-            rearrangeforamt(data)
-            setgameboard(data)
-        })
-        .catch(err => console.error(err))
-    }
-}
-
-function rearrangeforamt(data){
+/*function rearrangeforamt(data){
     const categoryContainer = document.getElementById("category-container")
     categoryContainer.innerHTML = `<h1>Ready to play with ${data.name}?</h1><div id="cate-${data.id}"></div>`
     const makeCate= `cate-${data.id}`
@@ -34,7 +17,7 @@ function rearrangeforamt(data){
     for(let i=0; i<data.cards.length; i++){
         getcategory.innerHTML += `<img alt="card-image" src="${data.cards[i].url}" class="img-thumbnail col" width= "210" height="210">`
     }
-}
+}*/
 
 function setgameboard(data){
     const game=document.getElementById("game")
@@ -157,53 +140,3 @@ function playgame(data){
     }
 }
 
-/*nested fetch request can be replaced with accepts_nested_attributes_for but accecpt_nested is much clearner
-function createCategory(){
-    const createForm = document.getElementById("form-container")
-    createForm.addEventListener("submit", function(e){
-        e.preventDefault()
-        const form = e.target
-        const nameInput = form.querySelector("#name")
-        
-        
-        fetch("http://127.0.0.1:3000/categories", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body: JSON.stringify({
-                name: nameInput.value
-            })
-        })
-        .then(resp => resp.json())
-        .then(data => {
-            console.log(data)
-            addCard(data)
-        })
-        .catch(err => console.error(err))
-
-    })
-}
-function addCard(data){
-    console.log("sec: ", data.store.id)
-    const newcards_name = document.querySelectorAll('.newcard-name')
-    const newcards_url = document.querySelectorAll('.newcard-url')
-    fetch("http://127.0.0.1:3000/cards", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body: JSON.stringify({
-                name: newcards_name[0].value,
-                url: newcards_url[0].value,
-                category_id: data.store.id
-            })
-        })
-        .then(resp => resp.json())
-        .then(data => {
-            console.log(data)
-        })
-        .catch(err => console.error(err))
-}*/

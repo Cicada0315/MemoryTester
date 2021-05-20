@@ -14,7 +14,17 @@ class Category{
 
     addToDom(){
         const categoryContainer = document.getElementById("category-container");
-        //categoryContainer.addEventListener("click", createGame)
         categoryContainer.innerHTML += this.render();
+    }
+
+    rearrangeforamt(){
+        const categoryContainer = document.getElementById("category-container")
+        categoryContainer.innerHTML = `<h1>Ready to play with ${this.name}?</h1><div id="cate-${this.id}"></div>`
+        const makeCate= `cate-${this.id}`
+        const getcategory=document.getElementById(makeCate)
+        
+        for(let i=0; i<this.cards.length; i++){
+            getcategory.innerHTML += `<img alt="card-image" src="${this.cards[i].url}" class="img-thumbnail col" width= "210" height="210">`
+        }
     }
 }

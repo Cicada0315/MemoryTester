@@ -11,4 +11,20 @@ class CategoryFrom{
         });
     }
 
+    listenPlay(){
+        const categoryContainer = document.getElementById("category-container");
+        categoryContainer.addEventListener("click", (e)=>{
+            const btn = e.target;
+            const createForm = document.getElementById("form-container");
+            if (btn.dataset.action === "create_game"){
+                createForm.hidden="true";
+                const temparr=btn.parentElement.id.split("-");
+                const id = temparr[1];
+                categoryfetch.getCategory(id);
+            }
+        })
+    }
+
+
+
 }
