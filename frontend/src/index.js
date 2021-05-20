@@ -2,79 +2,9 @@ const back_face_img="https://image.shutterstock.com/image-vector/turned-playing-
 const categoryfetch=new CategoryAdapter("http://127.0.0.1:3000/categories");
 
 document.addEventListener("DOMContentLoaded", () => {
-    createCategory();
-    //fetchCategory()
+    categoryfetch.createCategory();
     categoryfetch.getCategory();
-
 })
-
-function createCategory(){
-    const createForm = document.getElementById("form-container")
-    createForm.addEventListener("submit", function(e){
-        e.preventDefault()
-        const form = e.target
-        const nameInput = form.querySelector("#name")
-        const newcards_name = document.querySelectorAll('.newcard-name')
-        const newcards_url = document.querySelectorAll('.newcard-url')
-        
-        fetch("http://127.0.0.1:3000/categories", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body: JSON.stringify({
-                name: nameInput.value,
-                cards_attributes: [{
-                        name: newcards_name[0].value,
-                        url: newcards_url[0].value
-                    }, {
-                        name: newcards_name[1].value,
-                        url: newcards_url[1].value
-                    }, {
-                        name: newcards_name[2].value,
-                        url: newcards_url[2].value
-                    }, {
-                        name: newcards_name[3].value,
-                        url: newcards_url[3].value
-                    }, {
-                        name: newcards_name[4].value,
-                        url: newcards_url[4].value
-                    }, {
-                        name: newcards_name[5].value,
-                        url: newcards_url[5].value
-                    }
-                ]
-            })
-        })
-        .then(resp => resp.json())
-        .then(data => {
-            console.log(data)
-            addCard(data)
-        })
-        .catch(err => console.error(err))
-
-    })
-}
-
-/*function fetchCategory(){
-    fetch("http://127.0.0.1:3000/categories")
-    .then(resp => resp.json())
-    .then(data => {
-        data.forEach(addCategory)
-    })
-    .catch(err => console.log(err))
-}*/
-
-/*function addCategory(category){
-    const categoryContainer = document.getElementById("category-container")
-    categoryContainer.addEventListener("click", createGame)
-    categoryContainer.innerHTML += 
-    `<li id="cate-${category.id}"><strong>${category.name}</strong> 
-        <button class="btn btn-outline-primary" data-action="create_game">Play</button>
-    </li>
-    <br><br>`
-}*/
 
 function createGame(e) {
     const btn = e.target
