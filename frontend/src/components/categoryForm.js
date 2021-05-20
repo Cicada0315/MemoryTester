@@ -1,3 +1,4 @@
+//handle category related eventlistener
 class CategoryFrom{
     createCategory(){
         const createForm = document.getElementById("form-container");

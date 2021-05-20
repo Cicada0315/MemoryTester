@@ -1,4 +1,4 @@
-//This is for all the fetch
+//This is for all the fetch for category
 class CategoryAdapter{
     constructor(baseURL){
         this.baseURL=baseURL;
@@ -24,7 +24,6 @@ class CategoryAdapter{
             category.rearrangeforamt();
             const game=new Game(data);
             game.setgameboard();
-            //setgameboard(data)
         })
         .catch(err => console.error(err));
     }
@@ -67,6 +66,6 @@ class CategoryAdapter{
             const category=new Category(data);
             category.addToDom();
         })
-        .catch(err => console.error(err))
+        .catch(err => console.error(err));
     }
 }

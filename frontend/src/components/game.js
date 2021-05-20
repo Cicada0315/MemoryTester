@@ -6,20 +6,13 @@ class Game{
     }
     
     setgameboard(){
-        const game=document.getElementById("game")
-        game.hidden=false
-        const boardContainer = document.getElementById("memory-game")
-        boardContainer.innerHTML =""
+        const game=document.getElementById("game");
+        game.hidden=false;
+        const boardContainer = document.getElementById("memory-game");
+        boardContainer.innerHTML ="";
         for(let i=0; i<this.cards.length; i++){
-            boardContainer.innerHTML +=
-            `<div class="memory-card" data-set="${this.cards[i].name}">
-                <img class="front-face" src="${this.cards[i].url}" alt="${this.cards[i].name}" />
-                <img class="back-face" src="${back_face_img}" alt="${this.cards[i].name}" />
-            </div>
-            <div class="memory-card" data-set="${this.cards[i].name}">
-                <img class="front-face" src="${this.cards[i].url}" alt="${this.cards[i].name}" />
-                <img class="back-face" src="${back_face_img}" alt="${this.cards[i].name}" />
-            </div>`
+            let card=new Card(this.cards[i].id, this.cards[i].name, this.cards[i].url, this.id);
+            card.addToDom();
         }
         this.shuffle()
         this.playgame()
@@ -49,6 +42,7 @@ class Game{
         let hasFlippedCard = false
         let lockBoard = false
         let firstCard, secondCard
+        gameForms.listenflip(hasFlippedCard,lockBoard, firstCard, secondCard);
 
         //Menu Related
         function updatespeed(e) {
