@@ -3,7 +3,6 @@ class Game{
         this.id=id;
         this.name=name;
         this.cards=cards;
-        this.setgameboard =this.setgameboard.bind(this);
     }
     
     setgameboard(){
@@ -28,6 +27,13 @@ class Game{
     }
 
     playgame(){
+        const resetGame= ()=> {
+            resetValues();
+            startgame=false;
+            totalcount=6;
+            trialout.innerText=0;
+            this.setgameboard();
+        }
         const cards = document.querySelectorAll('.memory-card');
         cards.forEach(card => card.addEventListener('click', flipCard));
         const speedinput= document.getElementById("speed");
@@ -48,14 +54,6 @@ class Game{
         //Menu Related
         function updatespeed(e) {
             speed=this.value;
-        }
-
-        function resetGame() {
-            resetValues();
-            startgame=false;
-            totalcount=6;
-            trialout.innerText=0;
-            this.setgameboard();
         }
 
         function goback(){
