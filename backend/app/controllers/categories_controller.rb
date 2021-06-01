@@ -27,12 +27,12 @@ class CategoriesController < ApplicationController
     if @category.save
       render json: {
         status: 201,
-        store: @category
+        category: @category
       }, status: :created, location: category_path(@category)
     else
       render json: {
         status: 422,
-        errors: @store.errors.full_messages.join(", ")
+        errors: @category.errors.full_messages.join(", ")
       }, status: :unprocessable_entity
     end
   end

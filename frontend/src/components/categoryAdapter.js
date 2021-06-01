@@ -63,9 +63,14 @@ class CategoryAdapter{
         })
         .then(resp => resp.json())
         .then(data => {
-            const category=new Category(data);
-            category.addToDom();
+            if ("errors" in data){
+                alert(data.errors);
+            }
+            else{
+                const category=new Category(data.category);
+                category.addToDom();
+            }
         })
-        .catch(err => console.error(err));
+        .catch(err => console.log(err));
     }
 }
