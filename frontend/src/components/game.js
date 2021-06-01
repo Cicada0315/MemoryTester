@@ -3,6 +3,7 @@ class Game{
         this.id=id;
         this.name=name;
         this.cards=cards;
+        this.setgameboard =this.setgameboard.bind(this);
     }
     
     setgameboard(){

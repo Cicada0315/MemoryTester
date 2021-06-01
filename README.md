@@ -21,6 +21,8 @@ memoryTester/frontend$ explorer.exe index.html
 ## Navigate website
 ### Create New Category
 User can make new category with 6 cards.
+### Delete Category
+User can delete category with 6 cards.
 
 ### Play game
 There is a list of category that user can select when user click Play button next each category,
