@@ -12,6 +12,19 @@ class CategoryFrom{
         });
     }
 
+    deleteCategory(){
+        const categoryContainer = document.getElementById("category-container");
+        categoryContainer.addEventListener("click", (e)=>{
+            const btn = e.target;
+            if (btn.dataset.action === "delete_cate"){
+                const li=btn.parentElement;
+                const temparr=btn.parentElement.id.split("-");
+                const id = temparr[1];
+                categoryfetch.deleteCate(li,id);
+            }
+        })
+    }
+
     listenPlay(){
         const categoryContainer = document.getElementById("category-container");
         categoryContainer.addEventListener("click", (e)=>{

@@ -8,6 +8,7 @@ class Category{
     render(){
         return (`<li id="cate-${this.id}"><strong>${this.name}</strong> 
                     <button class="btn btn-outline-primary" data-action="create_game">Play</button>
+                    <button class="btn btn-outline-primary" data-action="delete_cate">X</button>
                 </li>
                 <br><br>`
         );

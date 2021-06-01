@@ -73,4 +73,23 @@ class CategoryAdapter{
         })
         .catch(err => console.log(err));
     }
+
+    deleteCate(li, id){
+        fetch(`http://127.0.0.1:3000/categories/${id}`, {
+            method: "DELETE"
+        })
+        .then(resp => {
+            console.log(resp)
+            return resp.json()
+        })
+        .then(data => {
+            if (data.message === "Successfully deleted"){
+                // delete li for DOM
+                li.remove()
+            } else {
+                alert(data.message)
+            }
+        })
+        .catch(err => console.error(err))
+    }
 }

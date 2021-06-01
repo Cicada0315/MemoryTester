@@ -1,5 +1,5 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: [:show, :update, :destroy]
+  before_action :set_category, only: [:show, :destroy]
 
   # GET /categories
   def index
@@ -34,6 +34,19 @@ class CategoriesController < ApplicationController
         status: 422,
         errors: @category.errors.full_messages.join(", ")
       }, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    if @category.destroy
+      render json: {
+        message: "Successfully deleted", 
+        category: @category
+      }
+    else
+      render json: {
+        message: "Failed to delete"
+      }
     end
   end
 

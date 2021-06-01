@@ -5,5 +5,6 @@ const categoryForms=new CategoryFrom;
 document.addEventListener("DOMContentLoaded", () => {
     categoryForms.createCategory();
     categoryfetch.getCategories();
-    categoryForms.listenPlay();; 
+    categoryForms.deleteCategory();
+    categoryForms.listenPlay();
 })
