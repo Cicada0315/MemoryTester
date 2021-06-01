@@ -4,7 +4,6 @@ class CategoriesController < ApplicationController
   # GET /categories
   def index
     @categories = Category.all
-
     render json: @categories, only: [:id, :name], include: {
       cards: {
         only: [:id, :name, :url, :category_id] 
@@ -36,20 +35,6 @@ class CategoriesController < ApplicationController
         errors: @store.errors.full_messages.join(", ")
       }, status: :unprocessable_entity
     end
-  end
-
-  # PATCH/PUT /categories/1
-  def update
-    if @category.update(category_params)
-      render json: @category
-    else
-      render json: @category.errors, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /categories/1
-  def destroy
-    @category.destroy
   end
 
   private
