@@ -1,4 +1,3 @@
-//This is for all the fetch for category
 class CategoryAdapter{
     constructor(baseURL){
         this.baseURL=baseURL;

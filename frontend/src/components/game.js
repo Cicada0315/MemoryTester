@@ -28,6 +28,8 @@ class Game{
 
     playgame(){
         const resetGame= ()=> {
+            timer=0;
+            clearInterval(counttimer);
             resetValues();
             startgame=false;
             totalcount=6;
@@ -50,6 +52,16 @@ class Game{
         let lockBoard = false;
         let firstCard, secondCard;
         let startgame=false;
+        
+        let timer=0;
+        let timerspan=document.getElementById("timer")
+        let counttimer = setInterval(myTimer, 1000);
+        
+        function myTimer() {
+            timerspan.innerHTML = timer+" sec";
+            timer++;
+        }
+               
 
         //Menu Related
         function updatespeed(e) {
@@ -64,7 +76,6 @@ class Game{
         function flipCard() {
             if (lockBoard) return;
             if (this === firstCard) return;
-
             this.classList.add('flip')
             trialout.innerText=trial+=1;
             if (!hasFlippedCard) {
@@ -93,6 +104,7 @@ class Game{
         }
 
         function winnerMessage() {
+            clearInterval(counttimer);
             alert("You did it!! Great job!");
         }
 

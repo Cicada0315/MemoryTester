@@ -4,6 +4,7 @@ class CategoriesController < ApplicationController
   # GET /categories
   def index
     @categories = Category.all
+    
     render json: @categories, only: [:id, :name], include: {
       cards: {
         only: [:id, :name, :url, :category_id] 
@@ -58,6 +59,8 @@ class CategoriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def category_params
+      # using `fetch` you can supply a default and use
+      # the Strong Parameters API from there. 
       params.fetch(:category, {}).permit(:name, cards_attributes: [:name, :url])
       ##params.require(:category).permit(:name, cards_attributes: [:name, :url])
     end

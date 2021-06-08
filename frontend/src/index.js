@@ -7,4 +7,13 @@ document.addEventListener("DOMContentLoaded", () => {
     categoryfetch.getCategories();
     categoryForms.deleteCategory();
     categoryForms.listenPlay();
+    /*const changebodybutton = document.getElementById("change");
+    changebodybutton.addEventListener("click", (e)=>{
+        if(document.body.style.background === "black"){
+            document.body.style.background = "white";
+        }
+        else{
+            document.body.style.background = "black";
+        }
+    })*/
 })

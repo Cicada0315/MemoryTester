@@ -6,8 +6,17 @@ h1 {
 h2 {
     font-family: "Brush Script Std", cursive;
 }
+
 #copyright{
     background-color: rgba(0, 0, 0, 0.2)
+}
+
+.div-1 {
+    background-color: #EBEBEB;
+}
+
+.div-2 {
+    background-color: #ABBAEA;
 }
 
 #game-menu {
